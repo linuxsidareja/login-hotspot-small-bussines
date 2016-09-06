@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Small Business - Start Bootstrap Template</title>
+    <title>SMKTIKA -> Login</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/theme-united.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/small-business.css" rel="stylesheet">
@@ -28,8 +28,29 @@
 
 <body>
 
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -47,13 +68,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="http://portal.smktika.id">Portal</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="status.html">Status</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="logout?erase-cookie=true">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -67,26 +88,46 @@
 
         <!-- Heading Row -->
         <div class="row">
+            <div class="col-md-4 text-center">
+                <h1><strong>Login Hotspot</strong></h1>
+                <p class="tika">SMK Tarbiyatul Islam Kawunganten</p>
+                <form id="loginForm" class="form-signin" role="form" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+					<input type="hidden" name="dst" value="$(link-orig)"/>
+					<input type="hidden" name="popup" value="true"/>
+					<input type="text" name="username" class="form-control input-lg" placeholder="Nama pengguna" required autofocus>
+					<input type="password" name="password" class="form-control input-lg" placeholder="Sandi" required>
+					<button class="btn btn-primary btn-lg" href="#">Masuk</button>
+				</form>
+            </div>
+            <!-- /.col-md-4 -->
             <div class="col-md-8">
                 <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt="">
             </div>
             <!-- /.col-md-8 -->
-            <div class="col-md-4">
-                <h1>Business Name or Tagline</h1>
-                <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
-                <a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
-            </div>
-            <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
 
         <hr>
 
+			<div class="pesan-login">
+				$(if error)
+					<div class="alert alert-danger">$(error)</div>
+				$(endif)
+
+				<div class="alert alert-info">Silahkan masuk untuk menggunakan layanan Hotspot.</div>
+
+				$(if trial == 'yes')
+					<div class="alert alert-info">
+						Ingin mencoba? <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">klik di sini</a>.
+					</div>
+				$(endif)
+			</div>
+
         <!-- Call to Action Well -->
         <div class="row">
             <div class="col-lg-12">
-                <div class="well text-center">
-                    This is a well that is a great spot for a business tagline or phone number for easy access!
+                <div class="well text-center tika">
+                    <marquee>This is a well that is a great spot for a business tagline or phone number for easy access!</marquee>
                 </div>
             </div>
             <!-- /.col-lg-12 -->
@@ -96,21 +137,34 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-4">
-                <h2>Heading 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
+                <h2>Kejuruan</h2>
+                <ul>
+					<li>Teknik Komputer & Jaringan</li>
+					<li>Administrasi Perkantoran</li>
+					<li>Akuntansi</li>
+                </ul>
+                <a class="btn btn-default" href="http://www.smktikwt.sch.id" target="_blank">Selengkapnya</a>
             </div>
             <!-- /.col-md-4 -->
             <div class="col-md-4">
-                <h2>Heading 2</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
+                <h2>Karya Siswa</h2>
+                <ul>
+					<li>tiOS</li>
+					<li>Jurnalistik</li>
+					<li>Kerajinan</li>
+					<li>Robotika</li>
+                </ul>
+                <a class="btn btn-default" href="http://www.smktikwt.sch.id" target="_blank">Selengkapnya</a>
             </div>
             <!-- /.col-md-4 -->
             <div class="col-md-4">
-                <h2>Heading 3</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                <a class="btn btn-default" href="#">More Info</a>
+                <h2>Fasilitas</h2>
+                <ul>
+					<li>Hotspot Area</li>
+					<li>LabKom</li>
+					<li>.....</li>
+                </ul>
+                <a class="btn btn-default" href="http://www.smktikwt.sch.id" target="_blank">Selengkapnya</a>
             </div>
             <!-- /.col-md-4 -->
         </div>
@@ -120,7 +174,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; <a href="http://www.smktikwt.sch.id" target="_blank">SMKTIKA</a> 2016</p>
                 </div>
             </div>
         </footer>
